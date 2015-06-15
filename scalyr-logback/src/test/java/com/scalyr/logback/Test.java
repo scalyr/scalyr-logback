@@ -1,4 +1,4 @@
-package com.scalyr.logback.test;
+package com.scalyr.logback;
 
 import ch.qos.logback.classic.LoggerContext;
 import com.scalyr.api.logs.Events;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
  * A simple test of Scalyr / logback integration.
  */
 public class Test {
-  private static Logger logger = LoggerFactory.getLogger("com.scalyr.logback.test.Test");
+  private static Logger logger = LoggerFactory.getLogger("com.scalyr.logback.Test");
 
   /**
    * Insert a Scalyr "Write Logs" key here (see https://www.scalyr.com/keys).
@@ -57,7 +57,8 @@ public class Test {
       this.threadIndex = threadIndex;
     }
 
-    @Override public void run() {
+    @Override
+    public void run() {
       for (int i = 1; i <= 5; i++) {
         logger.warn("Thread " + threadIndex + ", message " + i + " (warn)");
         logger.info("Thread " + threadIndex + ", message " + i + " (info)");
