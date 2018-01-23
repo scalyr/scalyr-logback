@@ -55,4 +55,18 @@ public final class Util {
         return kvMap;
     }
 
+    /**
+     * Transforms a user-provided value for the Scalyr server address if necessary.
+     *
+     * @param address The user-provided value
+     * @return  The value to use for the Scalyr server address.
+     */
+    public static String canonicalizeScalyrServerAddress(String address) {
+        if (address == null) {
+            return null;
+        }
+
+        address = address.trim();
+        return address.isEmpty() ? null : address;
+    }
 }

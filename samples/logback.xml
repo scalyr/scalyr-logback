@@ -12,6 +12,10 @@
         <logfile>myapp</logfile>
         <parser>logback</parser>
         <serverHost>myhost</serverHost>
+
+        <!-- Uncomment if your account is hosted in eu.scalyr.com.
+          <scalyrServerAddress>https://upload.eu.scalyr.com</scalyrServerAddress>
+        -->
         <!-- Uncomment to attach an "env" field to each log message sent to Scalyr.
              This can be used for grouping or filtering messages by the environment 
              that generated them.

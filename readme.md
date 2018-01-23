@@ -64,6 +64,12 @@ See samples [logback.groovy](samples/logback.groovy) and [logback.xml](samples/l
 In your log4J configuration file, add a com.scalyr.log4j.ScalyrAppender.
 See sample [log4j.properties](samples/log4j.properties)
 
+##### Accounts in eu.scalyr.com
+
+If your Scalyr account is hosted on `eu.scalyr.com`, you will need to override the `scalyrServerAddress` configuration
+variable to use `https://upload.eu.scalyr.com`.  See the comments in the [logback.xml](samples/logback.xml) sample for
+an example.
+
 ### Parsing Rules
 
 Once you have log messages flowing into Scalyr, you can set up parsing rules. The easiest way to do that
