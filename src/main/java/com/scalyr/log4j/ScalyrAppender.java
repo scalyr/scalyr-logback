@@ -17,6 +17,9 @@ public class ScalyrAppender extends AppenderSkeleton {
     private String parser = "log4j";
     private String extraAttributes = "";
     private Integer maxBufferRam;
+    // The address of the Scalyr servers to use.  Null will force us to use the default server address.
+    private String scalyrServerAddress = null;
+
 
     public String getServerHost() { return this.serverHost == null ? "" : this.serverHost.trim(); }
 
@@ -33,6 +36,12 @@ public class ScalyrAppender extends AppenderSkeleton {
     public void setEnv(String env) { this.env = env; }
 
     public String getEnv() { return env; }
+
+    public String getScalyrServerAddress() { return this.scalyrServerAddress; }
+
+    public void setScalyrServerAddress(String scalyrServerAddress) {
+        this.scalyrServerAddress = Util.canonicalizeScalyrServerAddress(scalyrServerAddress);
+    }
 
     /**
      * Use this to describe any additional server attributes. Takes a string that is kv pairs separated by a comma e.g.:
@@ -55,6 +64,20 @@ public class ScalyrAppender extends AppenderSkeleton {
      *   $zodiac == "rooster" "hello world"
      * </pre>
      *
+     *
+     * <p>
+     * If your account is hosted on https://eu.scalyr.com, then you should override the <code>scalyrServerAddress</code>
+     * value with <code>https://upload.eu.scalyr.com</code>.  For example,
+     <pre><code>
+     &lt;configuration&gt;
+       &lt;appender name="scalyr" class="com.scalyr.logback.ScalyrAppender"&gt;
+         &lt;apiKey&gt;YOUR KEY&lt;/apiKey&gt;
+         &lt;scalyrServerAddress&gt;https://upload.eu.scalyr.com&lt;/scalyrServerAddress&gt;
+         ...
+       &lt;/appender&gt;
+     &lt;/configuration&gt;
+     </code></pre>
+     * <p>
      * @param extraAttributes String of key-value pairs
      */
     public void setExtraAttributes(String extraAttributes) { this.extraAttributes = extraAttributes; }
@@ -92,7 +115,7 @@ public class ScalyrAppender extends AppenderSkeleton {
 
             // default to 4MB if not set.
             int maxBufferRam = (this.maxBufferRam != null) ? this.maxBufferRam : 4194304;
-            Events.init(this.apiKey.trim(), maxBufferRam, null, serverAttributes);
+            Events.init(this.apiKey.trim(), maxBufferRam, scalyrServerAddress, serverAttributes);
         } else {
             errorHandler.error("Cannot initialize logging.  No Scalyr API Key has been set.");
         }
