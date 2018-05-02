@@ -7,8 +7,6 @@ import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.Level;
 import org.apache.log4j.spi.LoggingEvent;
 
-import java.util.Map;
-
 public class ScalyrAppender extends AppenderSkeleton {
     private String apiKey;
     private String serverHost = "";
@@ -87,7 +85,7 @@ public class ScalyrAppender extends AppenderSkeleton {
     @Override
     protected void append(LoggingEvent event) {
         int level = event.getLevel().toInt();
-        String message = event.getRenderedMessage();
+        String message = this.layout.format(event);
 
         if (level >= Level.ERROR_INT) {
             Events.error(new EventAttributes("message", "E " + message));
