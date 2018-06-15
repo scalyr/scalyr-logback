@@ -85,7 +85,7 @@ public class ScalyrAppender extends AppenderSkeleton {
     @Override
     protected void append(LoggingEvent event) {
         int level = event.getLevel().toInt();
-        String message = this.layout.format(event);
+        String message = getLayout().format(event);
 
         if (level >= Level.ERROR_INT) {
             Events.error(new EventAttributes("message", "E " + message));
