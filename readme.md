@@ -15,7 +15,7 @@ Add the following dependency to your project's pom.xml (check [Maven Central](ht
         <dependency>
             <groupId>com.scalyr</groupId>
             <artifactId>logback-log4j-appenders</artifactId>
-            <version>6.0.7</version>
+            <version>6.0.8</version>
         </dependency>
 
 **NOTE:** You'll also need the logback or log4j dependencies in your project's pom.xml as well (depending on which one you're using).
@@ -49,7 +49,7 @@ For log4j, you'll need:
 ##### Downloading JARs directly
 
 * Download the Java client library from [Maven Central](https://oss.sonatype.org/content/groups/public/com/scalyr/scalyr-client/6.0.15/scalyr-client-6.0.15.jar) and add it to your project.
-* Download the Appender library from [Maven Central](https://oss.sonatype.org/content/groups/public/com/scalyr/logback-log4j-appenders/6.0.7/logback-log4j-appenders-6.0.7.jar) and add it to your project.
+* Download the Appender library from [Maven Central](https://oss.sonatype.org/content/groups/public/com/scalyr/logback-log4j-appenders/6.0.8/logback-log4j-appenders-6.0.8.jar) and add it to your project.
 * Make sure you also have either logback or log4j jars in your project, as described in the section above.
 
 ### Configuration

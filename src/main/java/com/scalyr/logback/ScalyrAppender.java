@@ -120,6 +120,8 @@ public class ScalyrAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
      * consists of the first character of the level name (E, W, I, D, T for error,
      * warning, info, debug, and trace, respectively) followed by the message.
      *
+     * The Layout should have the logger context set and be started.
+     *
      * @param layout the Layout to use
      */
     public void setLayout(Layout<ILoggingEvent> layout) { this.layout = layout; }
@@ -130,6 +132,8 @@ public class ScalyrAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
             //default layout
             layout = new PatternLayout();
             ((PatternLayout) layout).setPattern("%.-1level %msg");
+            layout.setContext(context);
+            layout.start();
         }
 
         final EventAttributes serverAttributes = new EventAttributes();
