@@ -146,6 +146,6 @@ public class ScalyrAppender extends AppenderSkeleton {
 
     @Override
     public boolean requiresLayout() {
-        return false;
+        return true;
     }
 }
